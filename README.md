@@ -17,6 +17,10 @@ FID plot for DCGAN is as follows :
 
 FID has been computed for every 100 epochs when total training was set for close to 100000 epochs
 
+Evolution for fake images sampled every 10 epcohs for around 300 or so epochs is present in zip file in DCGAN directory in images 
+
+Weights for some epochs are present in weights /DCGAN folder
+
 For SAGAN
 
 ![Generated_Images](https://github.com/rsn870/DCGAN/blob/master/images/SAGAN/fake_samples.png?raw=true)
