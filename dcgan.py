@@ -23,7 +23,7 @@ from visualiser_utils import *
 
 
 #########WINDOWS##############
-
+"""
 vis = visdom.Visdom(port=8097,env='main')
 vis.close(env='main')
 
@@ -36,7 +36,7 @@ G_loss_window = make_single_line_plot(window=None,visdom_object =vis,Y=None,X=No
 Image_real = make_images_plot(visdom_object=vis,env='main',first_time=True,nrow=3)
 
 Image_fake = make_images_plot(visdom_object=vis,env='main',first_time=True,nrow=3)
-
+"""
 ######################################################
 
 
@@ -160,7 +160,7 @@ fixed_noise = torch.randn(64, nz, 1, 1, device=device)
 G_solver = optim.Adam(netG.parameters(), lr=0.01)
 D_solver = optim.Adam(netD.parameters(), lr=0.01)
 
-for epoch in tqdm(range(10000)):
+for epoch in tqdm(range(18000)):
    for i, data in enumerate(trainloader, 0):
         ############################
         # (1) Update D network: maximize log(D(x)) + log(1 - D(G(z)))
@@ -214,8 +214,12 @@ for epoch in tqdm(range(10000)):
 
             #os.mkdir(path)
             
+            
+            
             utils.save_image(fake.detach(),'output/fake_samples_epoch_%03d.png' % (epoch),normalize=True)
 
+            """
+            
             Y = D_loss.view(-1,1)
 
             X = torch.Tensor([i]).view(-1,1)
@@ -236,11 +240,15 @@ for epoch in tqdm(range(10000)):
 
             make_images_plot(image_tensor=fake,visdom_object=vis,image_window=Image_fake,first_time=False,nrow=3)
             make_images_plot(image_tensor=real_cpu,visdom_object=vis,image_window=Image_real,first_time=False,nrow=3)
+            
+            """
 
 
 
         torch.save(netG.state_dict(), 'weights/netG_epoch_%d.pth' % (epoch))
         torch.save(netD.state_dict(), 'weights/netD_epoch_%d.pth' % (epoch))
+        
+        #Uncomment the visdom if plots are required for some sample losses  
 
 
 
