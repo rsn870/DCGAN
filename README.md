@@ -15,4 +15,6 @@ FID plot for DCGAN is as follws :
 
 ![FID for DCGAN](https://github.com/rsn870/DCGAN/blob/master/images/DCGAN/FID.JPG?raw=true)
 
+FID has been computed for every 100 epochs when total training was set for close to 20000 epochs
+
 
