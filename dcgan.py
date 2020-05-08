@@ -243,7 +243,7 @@ for epoch in tqdm(range(100000)):
         
         
         
-        if i % 100 == 0 :
+        #saved fake images have been sampled every 100 epochas and FID has been calculated using function mentioned in ipynb notebook
             
             
             
