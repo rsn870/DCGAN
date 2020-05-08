@@ -11,4 +11,8 @@ Graph for losses for DCGAN  is as follows :
 
 ![Wasserstein_Losses ](https://github.com/rsn870/DCGAN/blob/master/images/DCGAN/wasserstein.JPG?raw=true)
 
+FID plot for DCGAN is as follws :
+
+![FID for DCGAN](https://github.com/rsn870/DCGAN/blob/master/images/DCGAN/FID.JPG?raw=true)
+
 
