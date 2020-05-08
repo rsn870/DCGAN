@@ -5,4 +5,8 @@ This repo gives an implementation of DCGAN with wasserstein distance in pytorch 
 
 ![Generated_Images](https://github.com/rsn870/DCGAN/blob/master/images/fake_samples.png?raw=true)
 
+Graph for losses is as follows :
+
+![Wasserstein_Losses ](https://github.com/rsn870/DCGAN/blob/master/images/Wasserstein.jpg?raw=true)
+
 
