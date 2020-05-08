@@ -24,7 +24,6 @@ For SAGAN
 FID plot for SAGAN ias as follows :
 
 
-![FID for SAGAN](https://github.com/rsn870/DCGAN/blob/master/images/SAGAN/FID.JPG?raw=true)
 
 FID has been computed for every 40 epochs when total training was set for close to 100000 epochs
 
