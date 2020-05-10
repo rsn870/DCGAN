@@ -9,7 +9,7 @@ import torch.optim as optim
 from tqdm import  tqdm 
 import matplotlib.pyplot as plt
 import numpy as np
-import trochvision.utils as utils
+import torchvision.utils as utils
 import visdom
 import os 
 from visualiser_utils import *
