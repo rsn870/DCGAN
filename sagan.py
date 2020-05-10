@@ -13,6 +13,7 @@ import torchvision.utils as utils
 import visdom
 import os 
 from visualiser_utils import *
+from spectral import SpectralNorm
 
 #########WINDOWS##############
 
