@@ -23,7 +23,7 @@ Weights for some epochs are present in models /DCGAN folder
 
 For SAGAN
 
-![Generated_Images](https://github.com/rsn870/DCGAN/blob/master/SAGAN/fake_samples.png?raw=true)
+![Generated Images](https://github.com/rsn870/DCGAN/blob/master/SAGAN/fake_samples.png?raw=true)
 
 FID plot for SAGAN ias as follows :
 
@@ -32,6 +32,14 @@ FID plot for SAGAN ias as follows :
 
 
 FID has been computed for every 40 epochs when total training was set for close to 100000 epochs
+
+Visualisation of the attention map is also presented :
+
+![Attention Map](https://github.com/rsn870/DCGAN/blob/master/SAGAN/att_map.JPG?raw=true)
+
+Some saliency map for couple of images choosen in the dataset (original images were appropriately resized for ease of view)
+
+![Saliency Map](https://github.com/rsn870/DCGAN/blob/master/SAGAN/saliency_map.JPG?raw=true)
 
 
 
