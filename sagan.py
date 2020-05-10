@@ -226,11 +226,13 @@ class Discriminator(nn.Module):
 
 netG = Generator()
 netG = netG.to(device)
-netG.apply(weights_init)
+#netG.apply(weights_init)
 
 netD = Discriminator()
 netD = netD.to(device)
-netD.apply(weights_init)
+#netD.apply(weights_init)
+
+nz = 100 #Latent Dimension of noise sampled 
 
 fixed_noise = torch.randn(64, nz, 1, 1, device=device)
 
