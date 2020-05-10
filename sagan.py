@@ -310,10 +310,17 @@ for epoch in tqdm(range(100000)):
             make_images_plot(image_tensor=fake,visdom_object=vis,image_window=Image_fake,first_time=False,nrow=3)
             make_images_plot(image_tensor=real_cpu,visdom_object=vis,image_window=Image_real,first_time=False,nrow=3)
 
+            
+            
+            torch.save(netG.state_dict(), 'sa_weights/netG_epoch_%d.pth' % (epoch))
+            torch.save(netD.state_dict(), 'sa_weights/netD_epoch_%d.pth' % (epoch))
 
 
-    torch.save(netG.state_dict(), 'sa_weights/netG_epoch_%d.pth' % (epoch))
-    torch.save(netD.state_dict(), 'sa_weights/netD_epoch_%d.pth' % (epoch))
+
+
+
+
+
 
 
 
