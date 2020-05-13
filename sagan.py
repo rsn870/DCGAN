@@ -103,7 +103,7 @@ class Self_Attn(nn.Module):
 class Generator(nn.Module):
     """Generator."""
 
-    def __init__(self, batch_size = 64, image_size=64, z_dim=100, conv_dim=64):
+    def __init__(self, batch_size = 4, image_size=64, z_dim=10, conv_dim=64):
         super(Generator, self).__init__()
         self.imsize = image_size
         layer1 = []
@@ -165,7 +165,7 @@ class Generator(nn.Module):
 class Discriminator(nn.Module):
     """Discriminator, Auxiliary Classifier."""
 
-    def __init__(self, batch_size=64, image_size=64, conv_dim=64):
+    def __init__(self, batch_size=4, image_size=64, conv_dim=64):
         super(Discriminator, self).__init__()
         self.imsize = image_size
         layer1 = []
@@ -219,11 +219,11 @@ class Discriminator(nn.Module):
 #def weights_init(m):
     #classname = m.__class__.__name__
     #if classname.find('Conv') != -1:
-        #m.weight.data.normal_(0.0, 0.02)
+       # m.weight.data.normal_(0.0, 0.02)
     #elif classname.find('BatchNorm') != -1:
-        #m.weight.data.normal_(1.0, 0.02)
-        #m.bias.data.fill_(0)
-
+       #m.weight.data.normal_(1.0, 0.02)
+       #m.bias.data.fill_(0)
+nz = 10
 netG = Generator()
 netG = netG.to(device)
 #netG.apply(weights_init)
@@ -232,14 +232,12 @@ netD = Discriminator()
 netD = netD.to(device)
 #netD.apply(weights_init)
 
-nz = 100 #Latent Dimension of noise sampled 
-
-fixed_noise = torch.randn(64, nz, 1, 1, device=device)
+fixed_noise = torch.randn(4, nz, 1, 1, device=device)
 
 G_solver = optim.Adam(netG.parameters(), lr=0.01)
 D_solver = optim.Adam(netD.parameters(), lr=0.01)
 
-for epoch in tqdm(range(100000)):
+for epoch in tqdm(range(300)):
    for i, data in enumerate(trainloader, 0):
         ############################
         # (1) Update D network: maximize log(D(x)) + log(1 - D(G(z)))
@@ -252,7 +250,7 @@ for epoch in tqdm(range(100000)):
 
         D_x = D_real.mean().item()
 
-        noise = torch.randn(64, nz, 1, 1, device=device)
+        noise = torch.randn(4, nz, 1, 1, device=device)
         fake ,p1 , p2= netG(noise)
 
         D_fake , p1 , p2 = netD(fake)
@@ -260,19 +258,25 @@ for epoch in tqdm(range(100000)):
         D_G_z1 = D_fake.mean().item()
 
         D_loss = -(torch.mean(D_real) - torch.mean(D_fake))
-
-        D_loss.backward(retain_graph= True) 
+	if i > 0 :
+	    D_loss.backward(retain_graph= True)
+	else :
+	    D_loss.backward(retain_graph= True)
         D_solver.step()      
         for p in netD.parameters():
             p.data.clamp_(-0.01, 0.01)
-
+	
         netD.zero_grad()
         netG.zero_grad()
 
         output , b , g = netD(fake)
         D_G_z2 = output.mean().item()
         G_loss = -torch.mean(output)
-        G_loss.backward(retain_graph= True)
+        if i > 0 :
+            G_loss.backward(retain_graph= True)
+        else :
+            G_loss.backward(retain_graph= True)
+ 
         G_solver.step()
 
         print('[%d/%d][%d/%d] Loss_D: %.4f Loss_G: %.4f D(x): %.4f D(G(z)): %.4f / %.4f' % (epoch, 100000, i, len(trainloader),
